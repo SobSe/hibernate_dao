@@ -1,4 +1,4 @@
-package ru.sobse.hibernate_dao.Entity;
+package ru.sobse.hibernate_dao.entity;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
@@ -7,18 +7,18 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "persons", schema = "public")
-public class Persons {
+public class Person {
 
     @EmbeddedId
     private Contact contact;
     @Nonnull
-    @Column(length = 11)
-    private String phone_number;
+    @Column(name = "phone_number", length = 11)
+    private String phoneNumber;
     @Nonnull
-    @Column(length = 100)
-    private String city_of_living;
+    @Column(name = "city_of_living", length = 100)
+    private String cityOfLiving;
 
-    public Persons() {
+    public Person() {
     }
 
     public Contact getContact() {
@@ -30,28 +30,28 @@ public class Persons {
     }
 
     @Nonnull
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(@Nonnull String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(@Nonnull String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Nonnull
-    public String getCity_of_living() {
-        return city_of_living;
+    public String getCityOfLiving() {
+        return cityOfLiving;
     }
 
-    public void setCity_of_living(@Nonnull String city_of_living) {
-        this.city_of_living = city_of_living;
+    public void setCityOfLiving(@Nonnull String city_of_living) {
+        this.cityOfLiving = city_of_living;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Persons persons = (Persons) o;
+        Person persons = (Person) o;
         return Objects.equals(contact, persons.contact);
     }
 

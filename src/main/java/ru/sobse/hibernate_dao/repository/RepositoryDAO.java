@@ -1,9 +1,9 @@
-package ru.sobse.hibernate_dao;
+package ru.sobse.hibernate_dao.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import ru.sobse.hibernate_dao.Entity.Persons;
+import ru.sobse.hibernate_dao.entity.Person;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ public class RepositoryDAO {
         this.entityManager = entityManager;
     }
 
-    public List<Persons> personsByCity(String city) {
-        String queryText = "select p from Persons p where p.city_of_living = :city";
-        List<Persons> persons = entityManager.createQuery(queryText, Persons.class)
+    public List<Person> personsByCity(String city) {
+        String queryText = "select p from Person p where p.cityOfLiving = :city";
+        List<Person> persons = entityManager.createQuery(queryText, Person.class)
                 .setParameter("city", city)
                 .getResultList();
         return persons;

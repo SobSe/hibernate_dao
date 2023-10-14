@@ -1,10 +1,11 @@
-package ru.sobse.hibernate_dao;
+package ru.sobse.hibernate_dao.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.sobse.hibernate_dao.Entity.Persons;
+import ru.sobse.hibernate_dao.service.ServiceDAO;
+import ru.sobse.hibernate_dao.entity.Person;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ControllerDAO {
     }
 
     @GetMapping("/by-city")
-    public List<Persons> personsByCity(@RequestParam String city) {
+    public List<Person> personsByCity(@RequestParam String city) {
         return service.personsByCity(city);
     }
 }
