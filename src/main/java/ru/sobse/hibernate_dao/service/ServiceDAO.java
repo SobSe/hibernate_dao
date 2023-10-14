@@ -1,7 +1,8 @@
-package ru.sobse.hibernate_dao;
+package ru.sobse.hibernate_dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.sobse.hibernate_dao.Entity.Persons;
+import ru.sobse.hibernate_dao.entity.Person;
+import ru.sobse.hibernate_dao.repository.RepositoryDAO;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class ServiceDAO {
         this.repository = repository;
     }
 
-    public List<Persons> personsByCity(String city) {
+    public List<Person> personsByCity(String city) {
         return repository.personsByCity(city);
     }
 }

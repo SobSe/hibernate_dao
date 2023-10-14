@@ -1,4 +1,4 @@
-package ru.sobse.hibernate_dao.Entity;
+package ru.sobse.hibernate_dao.entity;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
