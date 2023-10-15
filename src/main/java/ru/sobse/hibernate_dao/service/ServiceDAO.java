@@ -18,15 +18,15 @@ public class ServiceDAO {
     }
 
     public List<Person> personsByCity(String city) {
-        return repository.findPersonByCityOfLiving(city);
+        return repository.personsByCity(city);
     }
 
     public List<Person> personsByAge(int age) {
-        return repository.findPersonByContactAgeBeforeOrderByContact(age);
+        return repository.personsByAge(age);
     }
 
     public List<Optional<Person>> personByNameSurname(String name, String surname) {
-        return repository.findPersonByContact_NameAndContact_Surname(name, surname);
+        return repository.personByNameSurname(name, surname);
     }
 
     public void save(Person person) {
