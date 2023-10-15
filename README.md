@@ -1,1 +1,1 @@
-##  Домашнее задание "Слой DAO c Hibernate"
+##  Домашнее задание "Слой DAO c JPA Repositories"
