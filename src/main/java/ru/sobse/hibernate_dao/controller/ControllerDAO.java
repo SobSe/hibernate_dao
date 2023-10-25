@@ -17,6 +17,11 @@ public class ControllerDAO {
         this.service = service;
     }
 
+    @GetMapping("/ping")
+    public String ping() {
+        return "OK";
+    }
+
     @GetMapping("/by-city")
     public List<Person> personsByCity(@RequestParam String city) {
         return service.personsByCity(city);
