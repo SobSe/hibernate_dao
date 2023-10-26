@@ -3,6 +3,7 @@ package ru.sobse.hibernate_dao.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,14 +14,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("Sergey")
-                .password("password")
+                .username("user")
+                .password("user")
                 .roles("USER")
                 .build();
         UserDetails admin = User.withDefaultPasswordEncoder()
@@ -28,18 +29,22 @@ public class WebSecurityConfiguration {
                 .password("admin").
                 roles("ADMIN", "USER")
                 .build();
-        return new InMemoryUserDetailsManager(user, admin);
+        UserDetails userSergey = User.withDefaultPasswordEncoder()
+                .username("sergey")
+                .password("sergey")
+                .roles("READ")
+                .build();
+        UserDetails userIvan = User.withDefaultPasswordEncoder()
+                .username("ivan")
+                .password("ivan").
+                roles("WRITE")
+                .build();
+        UserDetails userMichail = User.withDefaultPasswordEncoder()
+                .username("michail")
+                .password("michail")
+                .roles("DELETE")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin, userSergey, userMichail, userIvan);
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(
-                        (authorizeHttpRequests) -> authorizeHttpRequests
-                                .requestMatchers("/persons/ping")
-                                .permitAll()
-                                .requestMatchers("/**")
-                                .hasRole("USER"))
-                .formLogin(Customizer.withDefaults());
-        return http.build();
-    }
 }
